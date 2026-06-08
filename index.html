@@ -19,6 +19,13 @@
     <button class="nav-login">Войти</button>
   </nav>
 
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Arma Reforger · Тактический клан</div>
+    <div class="hero-title">MARLY<br><span class="hero-accent">CLAN</span></div>
+    <div class="hero-sub">Дисциплина. Тактика. Победа.</div>
+  </div>
+
   <main class="main">
     <!-- СТАТИСТИКА -->
     <div class="stats-row">
@@ -41,13 +48,11 @@
     </div>
 
     <div class="two-col">
-      <!-- ЛИДЕРБОРД -->
       <div class="panel">
         <div class="sec-title">Лидерборд</div>
         <div id="lb-home"></div>
         <a href="members.html"><button class="add-btn">Редактировать очки</button></a>
       </div>
-      <!-- УЧАСТНИКИ -->
       <div class="panel">
         <div class="sec-title">Участники клана</div>
         <div id="mem-home"></div>
@@ -55,7 +60,6 @@
       </div>
     </div>
 
-    <!-- РОТАЦИЯ -->
     <div class="panel">
       <div class="rot-header">
         <div class="sec-title">Ротация — текущая неделя</div>
@@ -93,10 +97,9 @@
     </div>
   </footer>
 
-  <!-- МОДАЛКА СТАТЫ -->
   <div id="modal-overlay" class="modal-overlay hidden">
     <div class="modal">
-      <div class="modal-title" id="modal-title">Редактировать</div>
+      <div class="modal-title">Редактировать статистику</div>
       <div class="form-group"><label id="modal-label">Значение</label><input id="f-val" type="text"></div>
       <div class="modal-actions">
         <button class="btn-cancel" onclick="closeModal()">Отмена</button>
@@ -119,7 +122,6 @@
       { key:'medic',  label:'Медик',       cls:'role-medic' },
       { key:'engi',   label:'Сапёр',       cls:'role-engi' },
     ];
-
     let currentStatKey = null;
 
     function render() {
@@ -128,13 +130,11 @@
       const rotation = getData('rotation');
       const stats    = getData('stats') || { wins: 138, winrate: '67%' };
 
-      // Статкарточки
       document.getElementById('s-members').textContent = members.length;
       document.getElementById('s-online').textContent  = members.filter(m => m.online).length;
       document.getElementById('s-wins').textContent    = stats.wins;
       document.getElementById('s-winrate').textContent = stats.winrate;
 
-      // Лидерборд
       const lbEl = document.getElementById('lb-home');
       lbEl.innerHTML = '';
       const maxPts = lb[0]?.pts || 1;
@@ -151,7 +151,6 @@
         </div>`;
       });
 
-      // Участники
       const memEl = document.getElementById('mem-home');
       memEl.innerHTML = '';
       members.slice(0,5).forEach(m => {
@@ -164,7 +163,6 @@
         </div>`;
       });
 
-      // Ротация
       const rotEl = document.getElementById('rot-grid-home');
       rotEl.innerHTML = '';
       rotation.forEach(day => {
@@ -183,7 +181,6 @@
       currentStatKey = key;
       const stats = getData('stats') || { wins: 138, winrate: '67%' };
       const labels = { wins: 'Количество побед', winrate: 'Винрейт (например 67%)' };
-      document.getElementById('modal-title').textContent = 'Редактировать статистику';
       document.getElementById('modal-label').textContent = labels[key];
       document.getElementById('f-val').value = stats[key];
       document.getElementById('modal-overlay').classList.remove('hidden');
@@ -202,7 +199,6 @@
       currentStatKey = null;
     }
 
-    // Инициализируем stats если нет
     if (!localStorage.getItem('marly_stats')) {
       saveData('stats', { wins: 138, winrate: '67%' });
     }

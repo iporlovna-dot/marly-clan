@@ -415,3 +415,35 @@ body {
   accent-color: #3B6D11;
   cursor: pointer;
 }
+
+/* HERO СЕКЦИЯ */
+.hero {
+  background: #1a1a1a;
+  border-bottom: 1px solid #3B6D11;
+  padding: 48px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #639922;
+}
+.hero-title {
+  font-size: 56px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.05;
+}
+.hero-accent {
+  color: #639922;
+}
+.hero-sub {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888780;
+  margin-top: 4px;
+}
