@@ -8,10 +8,7 @@
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-brand">
-      <div class="nav-logo">☠</div>
-      <span>MARLY</span>
-    </div>
+    <div class="nav-brand"><div class="nav-logo">☠</div><span>MARLY</span></div>
     <div class="nav-links">
       <a href="index.html" class="nav-link active">Главная</a>
       <a href="members.html" class="nav-link">Участники</a>
@@ -21,31 +18,22 @@
     </div>
     <button class="nav-login">Войти</button>
   </nav>
-
   <main class="main">
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-label">Участников</div><div class="stat-value white">24</div></div>
-      <div class="stat-card"><div class="stat-label">Побед</div><div class="stat-value green">138</div></div>
+      <div class="stat-card"><div class="stat-label">Участников</div><div class="stat-value white" id="s-members">—</div></div>
+      <div class="stat-card"><div class="stat-label">Побед</div><div class="stat-value green" id="s-wins">138</div></div>
       <div class="stat-card"><div class="stat-label">Винрейт</div><div class="stat-value white">67%</div></div>
-      <div class="stat-card"><div class="stat-label">Онлайн</div><div class="stat-value red">8</div></div>
+      <div class="stat-card"><div class="stat-label">Онлайн</div><div class="stat-value red" id="s-online">—</div></div>
     </div>
     <div class="two-col">
       <div class="panel">
         <div class="sec-title">Лидерборд</div>
-        <div class="lb-row"><div class="rank gold">1</div><div class="av" style="background:#1f2e12;color:#C0DD97">SK</div><div class="lb-info"><div class="pname">ShadowKing</div><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#639922"></div></div></div><div class="pts green">4210 pts</div></div>
-        <div class="lb-row"><div class="rank silver">2</div><div class="av" style="background:#2a1010;color:#F09595">NX</div><div class="lb-info"><div class="pname">NightX</div><div class="bar-bg"><div class="bar-fill" style="width:80%;background:#E24B4A"></div></div></div><div class="pts red">3380 pts</div></div>
-        <div class="lb-row"><div class="rank bronze">3</div><div class="av" style="background:#1f2e12;color:#97C459">VR</div><div class="lb-info"><div class="pname">VoidRay</div><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#3B6D11"></div></div></div><div class="pts" style="color:#97C459">2740 pts</div></div>
-        <div class="lb-row"><div class="rank">4</div><div class="av" style="background:#1a1a1a;color:#888780">CR</div><div class="lb-info"><div class="pname">CryptoRage</div><div class="bar-bg"><div class="bar-fill" style="width:50%;background:#639922"></div></div></div><div class="pts green">2100 pts</div></div>
-        <div class="lb-row"><div class="rank">5</div><div class="av" style="background:#1a1a1a;color:#888780">PX</div><div class="lb-info"><div class="pname">PhantomX</div><div class="bar-bg"><div class="bar-fill" style="width:38%;background:#444441"></div></div></div><div class="pts" style="color:#888780">1590 pts</div></div>
+        <div id="lb-home"></div>
         <a href="members.html"><button class="add-btn">Показать всех</button></a>
       </div>
       <div class="panel">
         <div class="sec-title">Участники клана</div>
-        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1f2e12;color:#C0DD97">SK</div><div class="mem-info"><div class="pname">ShadowKing</div><div class="ptag">Reforger · 1200ч</div></div><div class="badge bl">Лидер</div></div>
-        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#2a1010;color:#F09595">NX</div><div class="mem-info"><div class="pname">NightX</div><div class="ptag">Reforger · 980ч</div></div><div class="badge bo">Офицер</div></div>
-        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1f2e12;color:#97C459">VR</div><div class="mem-info"><div class="pname">VoidRay</div><div class="ptag">Reforger · 740ч</div></div><div class="badge bo">Офицер</div></div>
-        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1a1a1a;color:#888780">CR</div><div class="mem-info"><div class="pname">CryptoRage</div><div class="ptag">Reforger · 520ч</div></div><div class="badge bm">Участник</div></div>
-        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1a1a1a;color:#888780">PX</div><div class="mem-info"><div class="pname">PhantomX</div><div class="ptag">Reforger · 310ч</div></div><div class="badge bm">Участник</div></div>
+        <div id="mem-home"></div>
         <a href="members.html"><button class="add-btn">+ Пригласить</button></a>
       </div>
     </div>
@@ -57,7 +45,6 @@
       <div class="rot-grid" id="rot-grid-home"></div>
     </div>
   </main>
-
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
@@ -72,7 +59,7 @@
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Клан</div>
-          <a href="#">О клане</a><a href="#">Вступить</a><a href="#">Правила</a><a href="#">Контакты</a>
+          <a href="#">О клане</a><a href="#">Вступить</a><a href="#">Правила</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Соцсети</div>
@@ -85,6 +72,65 @@
       <div class="footer-rights"><a href="#">Политика конфиденциальности</a><a href="#">Правила использования</a></div>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script src="data.js"></script>
+  <script>
+    const ROLE_COLORS = {
+      'Лидер':   { bg:'#1f2e12', fg:'#C0DD97', badge:'bl' },
+      'Офицер':  { bg:'#2a1010', fg:'#F09595', badge:'bo' },
+      'Участник':{ bg:'#1a1a1a', fg:'#888780', badge:'bm' },
+    };
+    const RANK_CLS = ['gold','silver','bronze'];
+    const ROLE_INFO = [
+      { key:'squad',  label:'Ком. отряда', cls:'role-squad' },
+      { key:'sniper', label:'Снайпер',     cls:'role-sniper' },
+      { key:'medic',  label:'Медик',       cls:'role-medic' },
+      { key:'engi',   label:'Сапёр',       cls:'role-engi' },
+    ];
+
+    const members = getData('members');
+    const lb = getData('leaderboard').sort((a,b) => b.pts - a.pts);
+    const rotation = getData('rotation');
+
+    document.getElementById('s-members').textContent = members.length;
+    document.getElementById('s-online').textContent = members.filter(m => m.online).length;
+
+    // Лидерборд
+    const lbEl = document.getElementById('lb-home');
+    const maxPts = lb[0]?.pts || 1;
+    lb.slice(0,5).forEach((p, i) => {
+      const pct = Math.round(p.pts / maxPts * 100);
+      lbEl.innerHTML += `<div class="lb-row">
+        <div class="rank ${RANK_CLS[i]||''}">${i+1}</div>
+        <div class="av" style="background:#1f2e12;color:#C0DD97">${p.name.slice(0,2).toUpperCase()}</div>
+        <div class="lb-info"><div class="pname">${p.name}</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:#639922"></div></div></div>
+        <div class="pts green">${p.pts} pts</div>
+      </div>`;
+    });
+
+    // Участники
+    const memEl = document.getElementById('mem-home');
+    members.slice(0,5).forEach(m => {
+      const c = ROLE_COLORS[m.role] || ROLE_COLORS['Участник'];
+      memEl.innerHTML += `<div class="mem-row">
+        <div class="${m.online?'dot-on':'dot-off'}"></div>
+        <div class="av" style="background:${c.bg};color:${c.fg}">${m.av}</div>
+        <div class="mem-info"><div class="pname">${m.name}</div><div class="ptag">${m.game} · ${m.hours}ч</div></div>
+        <div class="badge ${c.badge}">${m.role}</div>
+      </div>`;
+    });
+
+    // Ротация
+    const rotEl = document.getElementById('rot-grid-home');
+    rotation.forEach(day => {
+      let html = `<div><div class="rot-day-label">${day.label} <span>${day.date}</span></div><div class="rot-slots">`;
+      ROLE_INFO.forEach(r => {
+        html += `<div class="slot"><span class="slot-role ${r.cls}">${r.label}</span>
+          ${day.slots[r.key] ? `<span class="slot-name">${day.slots[r.key]}</span>` : `<span class="slot-empty">не назначен</span>`}
+        </div>`;
+      });
+      html += '</div></div>';
+      rotEl.innerHTML += html;
+    });
+  </script>
 </body>
 </html>

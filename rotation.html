@@ -20,19 +20,70 @@
   </nav>
   <main class="main">
     <div class="page-title">Ротация</div>
-    <div class="panel">
-      <div class="rot-header">
-        <div class="sec-title">Текущая неделя</div>
-        <button class="add-btn" id="edit-btn" onclick="toggleEdit()">Редактировать</button>
-      </div>
-      <div class="rot-grid" id="rot-grid"></div>
-    </div>
+    <div class="panel" id="rot-panel"></div>
   </main>
   <footer class="footer">
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script src="data.js"></script>
+  <script>
+    const ROLES = [
+      { key:'squad',  label:'Ком. отряда', cls:'role-squad' },
+      { key:'sniper', label:'Снайпер',     cls:'role-sniper' },
+      { key:'medic',  label:'Медик',       cls:'role-medic' },
+      { key:'engi',   label:'Сапёр',       cls:'role-engi' },
+    ];
+    let editMode = false;
+
+    function render() {
+      const rotation = getData('rotation');
+      const members  = getData('members');
+      const panel = document.getElementById('rot-panel');
+      panel.innerHTML = `<div class="rot-header">
+        <div class="sec-title">Текущая неделя</div>
+        <button class="add-btn" onclick="toggleEdit()">${editMode ? '✓ Сохранить' : '✏ Редактировать'}</button>
+      </div>
+      <div class="rot-grid" id="rot-grid"></div>`;
+
+      const grid = document.getElementById('rot-grid');
+      rotation.forEach((day, di) => {
+        const col = document.createElement('div');
+        col.innerHTML = `<div class="rot-day-label">${day.label} <span>${day.date}</span></div>`;
+        const slots = document.createElement('div');
+        slots.className = 'rot-slots';
+        ROLES.forEach(r => {
+          const slot = document.createElement('div');
+          slot.className = 'slot';
+          if (editMode) {
+            const sel = document.createElement('select');
+            sel.className = 'slot-select';
+            sel.innerHTML = `<option value="">— не назначен —</option>` +
+              members.map(m => `<option value="${m.name}" ${day.slots[r.key]===m.name?'selected':''}>${m.name}</option>`).join('');
+            sel.onchange = () => {
+              rotation[di].slots[r.key] = sel.value;
+              saveData('rotation', rotation);
+            };
+            slot.innerHTML = `<span class="slot-role ${r.cls}">${r.label}</span>`;
+            slot.appendChild(sel);
+          } else {
+            slot.innerHTML = `<span class="slot-role ${r.cls}">${r.label}</span>
+              ${day.slots[r.key] ? `<span class="slot-name">${day.slots[r.key]}</span>` : `<span class="slot-empty">не назначен</span>`}`;
+          }
+          slots.appendChild(slot);
+        });
+        col.appendChild(slots);
+        grid.appendChild(col);
+      });
+    }
+
+    function toggleEdit() {
+      editMode = !editMode;
+      render();
+    }
+
+    render();
+  </script>
 </body>
 </html>

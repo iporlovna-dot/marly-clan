@@ -20,27 +20,104 @@
   </nav>
   <main class="main">
     <div class="page-title">Новости</div>
-    <div class="panel news-card">
-      <div class="news-date">05.06.2025</div>
-      <div class="news-title">Новый сезон — новые правила ротации</div>
-      <div class="news-body">С этой недели вводим обновлённую систему ротации. Каждый участник обязан сыграть минимум 2 сессии в неделю. Лидер назначает роли в понедельник до 18:00.</div>
-    </div>
-    <div class="panel news-card">
-      <div class="news-date">01.06.2025</div>
-      <div class="news-title">MARLY занял 2 место на Spring Cup!</div>
-      <div class="news-body">Поздравляем весь состав с отличным результатом. Особая благодарность ShadowKing и NightX за командную игру в финале.</div>
-    </div>
-    <div class="panel news-card">
-      <div class="news-date">20.05.2025</div>
-      <div class="news-title">Набор новых участников открыт</div>
-      <div class="news-body">Клан MARLY открывает набор. Требования: минимум 200 часов в Reforger, K/D от 1.0, активность минимум 3 раза в неделю. Заявки в Discord.</div>
-    </div>
+    <div id="news-list"></div>
+    <button class="add-btn" onclick="openModal()">+ Написать новость</button>
   </main>
   <footer class="footer">
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">Написать новость</div>
+      <div class="form-group"><label>Дата</label><input id="f-date" type="text" placeholder="05.06.2025"></div>
+      <div class="form-group"><label>Заголовок</label><input id="f-title" type="text" placeholder="Заголовок новости"></div>
+      <div class="form-group"><label>Текст</label><textarea id="f-body" rows="4" placeholder="Текст новости..."></textarea></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+        <button class="btn-save" onclick="saveNews()">Опубликовать</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    let editId = null;
+
+    function render() {
+      const newsList = document.getElementById('news-list');
+      const news = getData('news');
+      newsList.innerHTML = '';
+      news.forEach(n => {
+        const card = document.createElement('div');
+        card.className = 'panel news-card';
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="news-date">${n.date}</div>
+            <div class="row-actions">
+              <button class="btn-edit" onclick="editNews(${n.id})">✏</button>
+              <button class="btn-del" onclick="deleteNews(${n.id})">✕</button>
+            </div>
+          </div>
+          <div class="news-title">${n.title}</div>
+          <div class="news-body">${n.body}</div>`;
+        newsList.appendChild(card);
+      });
+    }
+
+    function openModal(id) {
+      editId = id || null;
+      document.getElementById('modal-title').textContent = id ? 'Редактировать новость' : 'Написать новость';
+      if (id) {
+        const n = getData('news').find(x => x.id === id);
+        document.getElementById('f-date').value  = n.date;
+        document.getElementById('f-title').value = n.title;
+        document.getElementById('f-body').value  = n.body;
+      } else {
+        const today = new Date();
+        const d = String(today.getDate()).padStart(2,'0');
+        const m = String(today.getMonth()+1).padStart(2,'0');
+        const y = today.getFullYear();
+        document.getElementById('f-date').value  = `${d}.${m}.${y}`;
+        document.getElementById('f-title').value = '';
+        document.getElementById('f-body').value  = '';
+      }
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      editId = null;
+    }
+
+    function editNews(id) { openModal(id); }
+
+    function saveNews() {
+      const news  = getData('news');
+      const date  = document.getElementById('f-date').value.trim();
+      const title = document.getElementById('f-title').value.trim();
+      const body  = document.getElementById('f-body').value.trim();
+      if (!title) return alert('Введи заголовок');
+      if (editId) {
+        const idx = news.findIndex(x => x.id === editId);
+        news[idx] = { ...news[idx], date, title, body };
+      } else {
+        news.unshift({ id: Date.now(), date, title, body });
+      }
+      saveData('news', news);
+      closeModal();
+      render();
+    }
+
+    function deleteNews(id) {
+      if (!confirm('Удалить новость?')) return;
+      saveData('news', getData('news').filter(n => n.id !== id));
+      render();
+    }
+
+    render();
+  </script>
 </body>
 </html>

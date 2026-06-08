@@ -20,38 +20,111 @@
   </nav>
   <main class="main">
     <div class="page-title">Турниры</div>
-    <div class="panel">
-      <div class="sec-title">Предстоящие</div>
-      <div class="tournament-row">
-        <div class="t-date">15.06.2025</div>
-        <div class="t-info"><div class="pname">Reforger League — Сезон 3</div><div class="ptag">Онлайн · 16 команд · Призовой фонд: 5000₽</div></div>
-        <div class="badge bl">Регистрация</div>
-      </div>
-      <div class="tournament-row">
-        <div class="t-date">22.06.2025</div>
-        <div class="t-info"><div class="pname">MARLY Open Cup</div><div class="ptag">Онлайн · 8 команд · Внутренний</div></div>
-        <div class="badge bo">Скоро</div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="sec-title">Прошедшие</div>
-      <div class="tournament-row">
-        <div class="t-date">01.05.2025</div>
-        <div class="t-info"><div class="pname">Spring Reforger Cup</div><div class="ptag">Онлайн · 12 команд</div></div>
-        <div class="badge bm">2 место</div>
-      </div>
-      <div class="tournament-row">
-        <div class="t-date">10.03.2025</div>
-        <div class="t-info"><div class="pname">Winter Clash 2025</div><div class="ptag">Онлайн · 8 команд</div></div>
-        <div class="badge bl">1 место</div>
-      </div>
-    </div>
+    <div class="panel" id="t-list"></div>
+    <button class="add-btn" onclick="openModal()">+ Добавить турнир</button>
   </main>
   <footer class="footer">
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">Добавить турнир</div>
+      <div class="form-group"><label>Дата</label><input id="f-date" type="text" placeholder="15.06.2025"></div>
+      <div class="form-group"><label>Название</label><input id="f-name" type="text" placeholder="Reforger League"></div>
+      <div class="form-group"><label>Описание</label><input id="f-desc" type="text" placeholder="Онлайн · 16 команд"></div>
+      <div class="form-group"><label>Статус</label>
+        <select id="f-status">
+          <option>Регистрация</option>
+          <option>Скоро</option>
+          <option>1 место</option>
+          <option>2 место</option>
+          <option>3 место</option>
+          <option>Участие</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+        <button class="btn-save" onclick="saveTournament()">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const STATUS_BADGE = {
+      'Регистрация':'bl','Скоро':'bo','1 место':'bl','2 место':'bm','3 место':'bm','Участие':'bm'
+    };
+    let editId = null;
+
+    function render() {
+      const list = document.getElementById('t-list');
+      const tournaments = getData('tournaments');
+      list.innerHTML = `<div class="sec-title">Всего турниров: ${tournaments.length}</div>`;
+      tournaments.forEach(t => {
+        const row = document.createElement('div');
+        row.className = 'tournament-row';
+        row.innerHTML = `
+          <div class="t-date">${t.date}</div>
+          <div class="t-info"><div class="pname">${t.name}</div><div class="ptag">${t.desc}</div></div>
+          <div class="badge ${STATUS_BADGE[t.status]||'bm'}">${t.status}</div>
+          <div class="row-actions">
+            <button class="btn-edit" onclick="editTournament(${t.id})">✏</button>
+            <button class="btn-del" onclick="deleteTournament(${t.id})">✕</button>
+          </div>`;
+        list.appendChild(row);
+      });
+    }
+
+    function openModal(id) {
+      editId = id || null;
+      document.getElementById('modal-title').textContent = id ? 'Редактировать турнир' : 'Добавить турнир';
+      if (id) {
+        const t = getData('tournaments').find(x => x.id === id);
+        document.getElementById('f-date').value   = t.date;
+        document.getElementById('f-name').value   = t.name;
+        document.getElementById('f-desc').value   = t.desc;
+        document.getElementById('f-status').value = t.status;
+      } else {
+        ['f-date','f-name','f-desc'].forEach(id => document.getElementById(id).value = '');
+      }
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      editId = null;
+    }
+
+    function editTournament(id) { openModal(id); }
+
+    function saveTournament() {
+      const tournaments = getData('tournaments');
+      const date   = document.getElementById('f-date').value.trim();
+      const name   = document.getElementById('f-name').value.trim();
+      const desc   = document.getElementById('f-desc').value.trim();
+      const status = document.getElementById('f-status').value;
+      if (!name) return alert('Введи название');
+      if (editId) {
+        const idx = tournaments.findIndex(x => x.id === editId);
+        tournaments[idx] = { ...tournaments[idx], date, name, desc, status };
+      } else {
+        tournaments.unshift({ id: Date.now(), date, name, desc, status });
+      }
+      saveData('tournaments', tournaments);
+      closeModal();
+      render();
+    }
+
+    function deleteTournament(id) {
+      if (!confirm('Удалить турнир?')) return;
+      saveData('tournaments', getData('tournaments').filter(t => t.id !== id));
+      render();
+    }
+
+    render();
+  </script>
 </body>
 </html>

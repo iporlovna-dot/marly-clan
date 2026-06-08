@@ -20,23 +20,128 @@
   </nav>
   <main class="main">
     <div class="page-title">Участники клана</div>
-    <div class="panel">
-      <div class="sec-title">Состав — 7 игроков</div>
-      <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1f2e12;color:#C0DD97">SK</div><div class="mem-info"><div class="pname">ShadowKing</div><div class="ptag">Reforger · 1200ч · K/D: 3.2</div></div><div class="badge bl">Лидер</div></div>
-      <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#2a1010;color:#F09595">NX</div><div class="mem-info"><div class="pname">NightX</div><div class="ptag">Reforger · 980ч · K/D: 2.8</div></div><div class="badge bo">Офицер</div></div>
-      <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1f2e12;color:#97C459">VR</div><div class="mem-info"><div class="pname">VoidRay</div><div class="ptag">Reforger · 740ч · K/D: 2.1</div></div><div class="badge bo">Офицер</div></div>
-      <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1a1a1a;color:#888780">CR</div><div class="mem-info"><div class="pname">CryptoRage</div><div class="ptag">Reforger · 520ч · K/D: 1.9</div></div><div class="badge bm">Участник</div></div>
-      <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1a1a1a;color:#888780">PX</div><div class="mem-info"><div class="pname">PhantomX</div><div class="ptag">Reforger · 310ч · K/D: 1.4</div></div><div class="badge bm">Участник</div></div>
-      <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#2a1010;color:#F09595">DK</div><div class="mem-info"><div class="pname">DarkKnight</div><div class="ptag">Reforger · 280ч · K/D: 1.6</div></div><div class="badge bm">Участник</div></div>
-      <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1f2e12;color:#97C459">GH</div><div class="mem-info"><div class="pname">GhostHawk</div><div class="ptag">Reforger · 210ч · K/D: 1.2</div></div><div class="badge bm">Участник</div></div>
-      <button class="add-btn">+ Пригласить участника</button>
-    </div>
+    <div class="panel" id="members-list"></div>
+    <button class="add-btn" onclick="openModal()">+ Добавить участника</button>
   </main>
   <footer class="footer">
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+  <!-- МОДАЛЬНОЕ ОКНО -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">Добавить участника</div>
+      <div class="form-group"><label>Никнейм</label><input id="f-name" type="text" placeholder="ShadowKing"></div>
+      <div class="form-group"><label>Аватар (2 буквы)</label><input id="f-av" type="text" maxlength="2" placeholder="SK"></div>
+      <div class="form-group"><label>Должность</label>
+        <select id="f-role">
+          <option>Лидер</option>
+          <option>Офицер</option>
+          <option selected>Участник</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Часы в игре</label><input id="f-hours" type="number" placeholder="500"></div>
+      <div class="form-group"><label>K/D</label><input id="f-kd" type="number" step="0.1" placeholder="1.5"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+        <button class="btn-save" onclick="saveMember()">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const ROLE_COLORS = {
+      'Лидер':   { bg:'#1f2e12', fg:'#C0DD97', badge:'bl' },
+      'Офицер':  { bg:'#2a1010', fg:'#F09595', badge:'bo' },
+      'Участник':{ bg:'#1a1a1a', fg:'#888780', badge:'bm' },
+    };
+
+    let editId = null;
+
+    function render() {
+      const members = getData('members');
+      const list = document.getElementById('members-list');
+      list.innerHTML = `<div class="sec-title">Состав — ${members.length} игроков</div>`;
+      members.forEach(m => {
+        const c = ROLE_COLORS[m.role] || ROLE_COLORS['Участник'];
+        const row = document.createElement('div');
+        row.className = 'mem-row';
+        row.innerHTML = `
+          <div class="${m.online ? 'dot-on' : 'dot-off'}"></div>
+          <div class="av" style="background:${c.bg};color:${c.fg}">${m.av}</div>
+          <div class="mem-info">
+            <div class="pname">${m.name}</div>
+            <div class="ptag">${m.game} · ${m.hours}ч · K/D: ${m.kd}</div>
+          </div>
+          <div class="badge ${c.badge}">${m.role}</div>
+          <div class="row-actions">
+            <button class="btn-edit" onclick="editMember(${m.id})">✏</button>
+            <button class="btn-del" onclick="deleteMember(${m.id})">✕</button>
+          </div>`;
+        list.appendChild(row);
+      });
+    }
+
+    function openModal(id) {
+      editId = id || null;
+      const members = getData('members');
+      document.getElementById('modal-title').textContent = id ? 'Редактировать участника' : 'Добавить участника';
+      if (id) {
+        const m = members.find(x => x.id === id);
+        document.getElementById('f-name').value = m.name;
+        document.getElementById('f-av').value = m.av;
+        document.getElementById('f-role').value = m.role;
+        document.getElementById('f-hours').value = m.hours;
+        document.getElementById('f-kd').value = m.kd;
+      } else {
+        document.getElementById('f-name').value = '';
+        document.getElementById('f-av').value = '';
+        document.getElementById('f-role').value = 'Участник';
+        document.getElementById('f-hours').value = '';
+        document.getElementById('f-kd').value = '';
+      }
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      editId = null;
+    }
+
+    function editMember(id) { openModal(id); }
+
+    function saveMember() {
+      const members = getData('members');
+      const name  = document.getElementById('f-name').value.trim();
+      const av    = document.getElementById('f-av').value.trim().toUpperCase();
+      const role  = document.getElementById('f-role').value;
+      const hours = parseInt(document.getElementById('f-hours').value) || 0;
+      const kd    = parseFloat(document.getElementById('f-kd').value) || 0;
+      if (!name) return alert('Введи никнейм');
+      const c = ROLE_COLORS[role];
+      if (editId) {
+        const idx = members.findIndex(x => x.id === editId);
+        members[idx] = { ...members[idx], name, av: av || name.slice(0,2).toUpperCase(), role, hours, kd, bg: c.bg, fg: c.fg };
+      } else {
+        const newId = Date.now();
+        members.push({ id: newId, av: av || name.slice(0,2).toUpperCase(), name, role, game:'Reforger', hours, kd, online:false, bg: c.bg, fg: c.fg });
+      }
+      saveData('members', members);
+      closeModal();
+      render();
+    }
+
+    function deleteMember(id) {
+      if (!confirm('Удалить участника?')) return;
+      const members = getData('members').filter(m => m.id !== id);
+      saveData('members', members);
+      render();
+    }
+
+    render();
+  </script>
 </body>
 </html>
