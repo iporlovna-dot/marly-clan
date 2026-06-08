@@ -18,25 +18,44 @@
     </div>
     <button class="nav-login">Войти</button>
   </nav>
+
   <main class="main">
+    <!-- СТАТИСТИКА -->
     <div class="stats-row">
       <div class="stat-card"><div class="stat-label">Участников</div><div class="stat-value white" id="s-members">—</div></div>
-      <div class="stat-card"><div class="stat-label">Побед</div><div class="stat-value green" id="s-wins">138</div></div>
-      <div class="stat-card"><div class="stat-label">Винрейт</div><div class="stat-value white">67%</div></div>
+      <div class="stat-card">
+        <div class="stat-label">Побед</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="stat-value green" id="s-wins">—</div>
+          <button class="stat-edit-btn" onclick="editStat('wins')">✏</button>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Винрейт</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="stat-value white" id="s-winrate">—</div>
+          <button class="stat-edit-btn" onclick="editStat('winrate')">✏</button>
+        </div>
+      </div>
       <div class="stat-card"><div class="stat-label">Онлайн</div><div class="stat-value red" id="s-online">—</div></div>
     </div>
+
     <div class="two-col">
+      <!-- ЛИДЕРБОРД -->
       <div class="panel">
         <div class="sec-title">Лидерборд</div>
         <div id="lb-home"></div>
-        <a href="members.html"><button class="add-btn">Показать всех</button></a>
+        <a href="members.html"><button class="add-btn">Редактировать очки</button></a>
       </div>
+      <!-- УЧАСТНИКИ -->
       <div class="panel">
         <div class="sec-title">Участники клана</div>
         <div id="mem-home"></div>
-        <a href="members.html"><button class="add-btn">+ Пригласить</button></a>
+        <a href="members.html"><button class="add-btn">+ Управление</button></a>
       </div>
     </div>
+
+    <!-- РОТАЦИЯ -->
     <div class="panel">
       <div class="rot-header">
         <div class="sec-title">Ротация — текущая неделя</div>
@@ -45,6 +64,7 @@
       <div class="rot-grid" id="rot-grid-home"></div>
     </div>
   </main>
+
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
@@ -72,6 +92,19 @@
       <div class="footer-rights"><a href="#">Политика конфиденциальности</a><a href="#">Правила использования</a></div>
     </div>
   </footer>
+
+  <!-- МОДАЛКА СТАТЫ -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">Редактировать</div>
+      <div class="form-group"><label id="modal-label">Значение</label><input id="f-val" type="text"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+        <button class="btn-save" onclick="saveStat()">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
   <script src="data.js"></script>
   <script>
     const ROLE_COLORS = {
@@ -87,50 +120,94 @@
       { key:'engi',   label:'Сапёр',       cls:'role-engi' },
     ];
 
-    const members = getData('members');
-    const lb = getData('leaderboard').sort((a,b) => b.pts - a.pts);
-    const rotation = getData('rotation');
+    let currentStatKey = null;
 
-    document.getElementById('s-members').textContent = members.length;
-    document.getElementById('s-online').textContent = members.filter(m => m.online).length;
+    function render() {
+      const members  = getData('members');
+      const lb       = getData('leaderboard').sort((a,b) => b.pts - a.pts);
+      const rotation = getData('rotation');
+      const stats    = getData('stats') || { wins: 138, winrate: '67%' };
 
-    // Лидерборд
-    const lbEl = document.getElementById('lb-home');
-    const maxPts = lb[0]?.pts || 1;
-    lb.slice(0,5).forEach((p, i) => {
-      const pct = Math.round(p.pts / maxPts * 100);
-      lbEl.innerHTML += `<div class="lb-row">
-        <div class="rank ${RANK_CLS[i]||''}">${i+1}</div>
-        <div class="av" style="background:#1f2e12;color:#C0DD97">${p.name.slice(0,2).toUpperCase()}</div>
-        <div class="lb-info"><div class="pname">${p.name}</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:#639922"></div></div></div>
-        <div class="pts green">${p.pts} pts</div>
-      </div>`;
-    });
+      // Статкарточки
+      document.getElementById('s-members').textContent = members.length;
+      document.getElementById('s-online').textContent  = members.filter(m => m.online).length;
+      document.getElementById('s-wins').textContent    = stats.wins;
+      document.getElementById('s-winrate').textContent = stats.winrate;
 
-    // Участники
-    const memEl = document.getElementById('mem-home');
-    members.slice(0,5).forEach(m => {
-      const c = ROLE_COLORS[m.role] || ROLE_COLORS['Участник'];
-      memEl.innerHTML += `<div class="mem-row">
-        <div class="${m.online?'dot-on':'dot-off'}"></div>
-        <div class="av" style="background:${c.bg};color:${c.fg}">${m.av}</div>
-        <div class="mem-info"><div class="pname">${m.name}</div><div class="ptag">${m.game} · ${m.hours}ч</div></div>
-        <div class="badge ${c.badge}">${m.role}</div>
-      </div>`;
-    });
-
-    // Ротация
-    const rotEl = document.getElementById('rot-grid-home');
-    rotation.forEach(day => {
-      let html = `<div><div class="rot-day-label">${day.label} <span>${day.date}</span></div><div class="rot-slots">`;
-      ROLE_INFO.forEach(r => {
-        html += `<div class="slot"><span class="slot-role ${r.cls}">${r.label}</span>
-          ${day.slots[r.key] ? `<span class="slot-name">${day.slots[r.key]}</span>` : `<span class="slot-empty">не назначен</span>`}
+      // Лидерборд
+      const lbEl = document.getElementById('lb-home');
+      lbEl.innerHTML = '';
+      const maxPts = lb[0]?.pts || 1;
+      lb.slice(0,5).forEach((p,i) => {
+        const pct = Math.round((p.pts / maxPts) * 100);
+        lbEl.innerHTML += `<div class="lb-row">
+          <div class="rank ${RANK_CLS[i]||''}">${i+1}</div>
+          <div class="av" style="background:#1f2e12;color:#C0DD97">${p.name.slice(0,2).toUpperCase()}</div>
+          <div class="lb-info">
+            <div class="pname">${p.name}</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:#639922"></div></div>
+          </div>
+          <div class="pts green">${p.pts} pts</div>
         </div>`;
       });
-      html += '</div></div>';
-      rotEl.innerHTML += html;
-    });
+
+      // Участники
+      const memEl = document.getElementById('mem-home');
+      memEl.innerHTML = '';
+      members.slice(0,5).forEach(m => {
+        const c = ROLE_COLORS[m.role] || ROLE_COLORS['Участник'];
+        memEl.innerHTML += `<div class="mem-row">
+          <div class="${m.online?'dot-on':'dot-off'}"></div>
+          <div class="av" style="background:${c.bg};color:${c.fg}">${m.av}</div>
+          <div class="mem-info"><div class="pname">${m.name}</div><div class="ptag">${m.game} · ${m.hours}ч</div></div>
+          <div class="badge ${c.badge}">${m.role}</div>
+        </div>`;
+      });
+
+      // Ротация
+      const rotEl = document.getElementById('rot-grid-home');
+      rotEl.innerHTML = '';
+      rotation.forEach(day => {
+        let html = `<div><div class="rot-day-label">${day.label} <span>${day.date}</span></div><div class="rot-slots">`;
+        ROLE_INFO.forEach(r => {
+          html += `<div class="slot"><span class="slot-role ${r.cls}">${r.label}</span>
+            ${day.slots[r.key] ? `<span class="slot-name">${day.slots[r.key]}</span>` : `<span class="slot-empty">не назначен</span>`}
+          </div>`;
+        });
+        html += '</div></div>';
+        rotEl.innerHTML += html;
+      });
+    }
+
+    function editStat(key) {
+      currentStatKey = key;
+      const stats = getData('stats') || { wins: 138, winrate: '67%' };
+      const labels = { wins: 'Количество побед', winrate: 'Винрейт (например 67%)' };
+      document.getElementById('modal-title').textContent = 'Редактировать статистику';
+      document.getElementById('modal-label').textContent = labels[key];
+      document.getElementById('f-val').value = stats[key];
+      document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
+    function saveStat() {
+      const stats = getData('stats') || { wins: 138, winrate: '67%' };
+      stats[currentStatKey] = document.getElementById('f-val').value.trim();
+      saveData('stats', stats);
+      closeModal();
+      render();
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      currentStatKey = null;
+    }
+
+    // Инициализируем stats если нет
+    if (!localStorage.getItem('marly_stats')) {
+      saveData('stats', { wins: 138, winrate: '67%' });
+    }
+
+    render();
   </script>
 </body>
 </html>
