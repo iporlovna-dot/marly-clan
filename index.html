@@ -14,17 +14,17 @@
       <span>MARLY</span>
     </div>
     <div class="nav-links">
-      <a href="#" class="nav-link active">Главная</a>
-      <a href="#" class="nav-link">Участники</a>
-      <a href="#" class="nav-link">Ротация</a>
-      <a href="#" class="nav-link">Турниры</a>
-      <a href="#" class="nav-link">Новости</a>
+      <a href="#" class="nav-link active" onclick="showPage('home', this)">Главная</a>
+      <a href="#" class="nav-link" onclick="showPage('members', this)">Участники</a>
+      <a href="#" class="nav-link" onclick="showPage('rotation', this)">Ротация</a>
+      <a href="#" class="nav-link" onclick="showPage('tournaments', this)">Турниры</a>
+      <a href="#" class="nav-link" onclick="showPage('news', this)">Новости</a>
     </div>
     <button class="nav-login">Войти</button>
   </nav>
 
-  <main class="main">
-
+  <!-- ГЛАВНАЯ -->
+  <main class="main" id="page-home">
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-label">Участников</div>
@@ -43,119 +43,125 @@
         <div class="stat-value red">8</div>
       </div>
     </div>
-
     <div class="two-col">
-
       <div class="panel">
         <div class="sec-title">Лидерборд</div>
-        <div class="lb-row">
-          <div class="rank gold">1</div>
-          <div class="av" style="background:#1f2e12;color:#C0DD97">SK</div>
-          <div class="lb-info">
-            <div class="pname">ShadowKing</div>
-            <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#639922"></div></div>
-          </div>
-          <div class="pts green">4210 pts</div>
-        </div>
-        <div class="lb-row">
-          <div class="rank silver">2</div>
-          <div class="av" style="background:#2a1010;color:#F09595">NX</div>
-          <div class="lb-info">
-            <div class="pname">NightX</div>
-            <div class="bar-bg"><div class="bar-fill" style="width:80%;background:#E24B4A"></div></div>
-          </div>
-          <div class="pts red">3380 pts</div>
-        </div>
-        <div class="lb-row">
-          <div class="rank bronze">3</div>
-          <div class="av" style="background:#1f2e12;color:#97C459">VR</div>
-          <div class="lb-info">
-            <div class="pname">VoidRay</div>
-            <div class="bar-bg"><div class="bar-fill" style="width:65%;background:#3B6D11"></div></div>
-          </div>
-          <div class="pts" style="color:#97C459">2740 pts</div>
-        </div>
-        <div class="lb-row">
-          <div class="rank">4</div>
-          <div class="av" style="background:#1a1a1a;color:#888780">CR</div>
-          <div class="lb-info">
-            <div class="pname">CryptoRage</div>
-            <div class="bar-bg"><div class="bar-fill" style="width:50%;background:#639922"></div></div>
-          </div>
-          <div class="pts green">2100 pts</div>
-        </div>
-        <div class="lb-row">
-          <div class="rank">5</div>
-          <div class="av" style="background:#1a1a1a;color:#888780">PX</div>
-          <div class="lb-info">
-            <div class="pname">PhantomX</div>
-            <div class="bar-bg"><div class="bar-fill" style="width:38%;background:#444441"></div></div>
-          </div>
-          <div class="pts" style="color:#888780">1590 pts</div>
-        </div>
-        <button class="add-btn">Показать всех</button>
+        <div class="lb-row"><div class="rank gold">1</div><div class="av" style="background:#1f2e12;color:#C0DD97">SK</div><div class="lb-info"><div class="pname">ShadowKing</div><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#639922"></div></div></div><div class="pts green">4210 pts</div></div>
+        <div class="lb-row"><div class="rank silver">2</div><div class="av" style="background:#2a1010;color:#F09595">NX</div><div class="lb-info"><div class="pname">NightX</div><div class="bar-bg"><div class="bar-fill" style="width:80%;background:#E24B4A"></div></div></div><div class="pts red">3380 pts</div></div>
+        <div class="lb-row"><div class="rank bronze">3</div><div class="av" style="background:#1f2e12;color:#97C459">VR</div><div class="lb-info"><div class="pname">VoidRay</div><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#3B6D11"></div></div></div><div class="pts" style="color:#97C459">2740 pts</div></div>
+        <div class="lb-row"><div class="rank">4</div><div class="av" style="background:#1a1a1a;color:#888780">CR</div><div class="lb-info"><div class="pname">CryptoRage</div><div class="bar-bg"><div class="bar-fill" style="width:50%;background:#639922"></div></div></div><div class="pts green">2100 pts</div></div>
+        <div class="lb-row"><div class="rank">5</div><div class="av" style="background:#1a1a1a;color:#888780">PX</div><div class="lb-info"><div class="pname">PhantomX</div><div class="bar-bg"><div class="bar-fill" style="width:38%;background:#444441"></div></div></div><div class="pts" style="color:#888780">1590 pts</div></div>
+        <button class="add-btn" onclick="showPage('members', document.querySelectorAll('.nav-link')[1])">Показать всех</button>
       </div>
-
       <div class="panel">
         <div class="sec-title">Участники клана</div>
-        <div class="mem-row">
-          <div class="dot-on"></div>
-          <div class="av" style="background:#1f2e12;color:#C0DD97">SK</div>
-          <div class="mem-info">
-            <div class="pname">ShadowKing</div>
-            <div class="ptag">Reforger · 1200ч</div>
-          </div>
-          <div class="badge bl">Лидер</div>
-        </div>
-        <div class="mem-row">
-          <div class="dot-on"></div>
-          <div class="av" style="background:#2a1010;color:#F09595">NX</div>
-          <div class="mem-info">
-            <div class="pname">NightX</div>
-            <div class="ptag">Reforger · 980ч</div>
-          </div>
-          <div class="badge bo">Офицер</div>
-        </div>
-        <div class="mem-row">
-          <div class="dot-off"></div>
-          <div class="av" style="background:#1f2e12;color:#97C459">VR</div>
-          <div class="mem-info">
-            <div class="pname">VoidRay</div>
-            <div class="ptag">Reforger · 740ч</div>
-          </div>
-          <div class="badge bo">Офицер</div>
-        </div>
-        <div class="mem-row">
-          <div class="dot-on"></div>
-          <div class="av" style="background:#1a1a1a;color:#888780">CR</div>
-          <div class="mem-info">
-            <div class="pname">CryptoRage</div>
-            <div class="ptag">Reforger · 520ч</div>
-          </div>
-          <div class="badge bm">Участник</div>
-        </div>
-        <div class="mem-row">
-          <div class="dot-off"></div>
-          <div class="av" style="background:#1a1a1a;color:#888780">PX</div>
-          <div class="mem-info">
-            <div class="pname">PhantomX</div>
-            <div class="ptag">Reforger · 310ч</div>
-          </div>
-          <div class="badge bm">Участник</div>
-        </div>
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1f2e12;color:#C0DD97">SK</div><div class="mem-info"><div class="pname">ShadowKing</div><div class="ptag">Reforger · 1200ч</div></div><div class="badge bl">Лидер</div></div>
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#2a1010;color:#F09595">NX</div><div class="mem-info"><div class="pname">NightX</div><div class="ptag">Reforger · 980ч</div></div><div class="badge bo">Офицер</div></div>
+        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1f2e12;color:#97C459">VR</div><div class="mem-info"><div class="pname">VoidRay</div><div class="ptag">Reforger · 740ч</div></div><div class="badge bo">Офицер</div></div>
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1a1a1a;color:#888780">CR</div><div class="mem-info"><div class="pname">CryptoRage</div><div class="ptag">Reforger · 520ч</div></div><div class="badge bm">Участник</div></div>
+        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1a1a1a;color:#888780">PX</div><div class="mem-info"><div class="pname">PhantomX</div><div class="ptag">Reforger · 310ч</div></div><div class="badge bm">Участник</div></div>
         <button class="add-btn">+ Пригласить</button>
       </div>
-
     </div>
-
     <div class="panel">
       <div class="rot-header">
         <div class="sec-title">Ротация — текущая неделя</div>
+        <button class="add-btn" onclick="showPage('rotation', document.querySelectorAll('.nav-link')[2])">Открыть полностью</button>
+      </div>
+      <div class="rot-grid" id="rot-grid-home"></div>
+    </div>
+  </main>
+
+  <!-- УЧАСТНИКИ -->
+  <main class="main hidden" id="page-members">
+    <div class="page-title">Участники клана</div>
+    <div class="panel">
+      <div class="members-full">
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1f2e12;color:#C0DD97">SK</div><div class="mem-info"><div class="pname">ShadowKing</div><div class="ptag">Reforger · 1200ч · K/D: 3.2</div></div><div class="badge bl">Лидер</div></div>
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#2a1010;color:#F09595">NX</div><div class="mem-info"><div class="pname">NightX</div><div class="ptag">Reforger · 980ч · K/D: 2.8</div></div><div class="badge bo">Офицер</div></div>
+        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1f2e12;color:#97C459">VR</div><div class="mem-info"><div class="pname">VoidRay</div><div class="ptag">Reforger · 740ч · K/D: 2.1</div></div><div class="badge bo">Офицер</div></div>
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#1a1a1a;color:#888780">CR</div><div class="mem-info"><div class="pname">CryptoRage</div><div class="ptag">Reforger · 520ч · K/D: 1.9</div></div><div class="badge bm">Участник</div></div>
+        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1a1a1a;color:#888780">PX</div><div class="mem-info"><div class="pname">PhantomX</div><div class="ptag">Reforger · 310ч · K/D: 1.4</div></div><div class="badge bm">Участник</div></div>
+        <div class="mem-row"><div class="dot-on"></div><div class="av" style="background:#2a1010;color:#F09595">DK</div><div class="mem-info"><div class="pname">DarkKnight</div><div class="ptag">Reforger · 280ч · K/D: 1.6</div></div><div class="badge bm">Участник</div></div>
+        <div class="mem-row"><div class="dot-off"></div><div class="av" style="background:#1f2e12;color:#97C459">GH</div><div class="mem-info"><div class="pname">GhostHawk</div><div class="ptag">Reforger · 210ч · K/D: 1.2</div></div><div class="badge bm">Участник</div></div>
+      </div>
+      <button class="add-btn">+ Пригласить участника</button>
+    </div>
+  </main>
+
+  <!-- РОТАЦИЯ -->
+  <main class="main hidden" id="page-rotation">
+    <div class="page-title">Ротация</div>
+    <div class="panel">
+      <div class="rot-header">
+        <div class="sec-title">Текущая неделя</div>
         <button class="add-btn" id="edit-btn" onclick="toggleEdit()">Редактировать</button>
       </div>
       <div class="rot-grid" id="rot-grid"></div>
     </div>
+  </main>
 
+  <!-- ТУРНИРЫ -->
+  <main class="main hidden" id="page-tournaments">
+    <div class="page-title">Турниры</div>
+    <div class="panel">
+      <div class="sec-title">Предстоящие</div>
+      <div class="tournament-row">
+        <div class="t-date">15.06.2025</div>
+        <div class="t-info">
+          <div class="pname">Reforger League — Сезон 3</div>
+          <div class="ptag">Онлайн · 16 команд · Призовой фонд: 5000₽</div>
+        </div>
+        <div class="badge bl">Регистрация</div>
+      </div>
+      <div class="tournament-row">
+        <div class="t-date">22.06.2025</div>
+        <div class="t-info">
+          <div class="pname">MARLY Open Cup</div>
+          <div class="ptag">Онлайн · 8 команд · Внутренний</div>
+        </div>
+        <div class="badge bo">Скоро</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="sec-title">Прошедшие</div>
+      <div class="tournament-row">
+        <div class="t-date">01.05.2025</div>
+        <div class="t-info">
+          <div class="pname">Spring Reforger Cup</div>
+          <div class="ptag">Онлайн · 12 команд</div>
+        </div>
+        <div class="badge bm">2 место</div>
+      </div>
+      <div class="tournament-row">
+        <div class="t-date">10.03.2025</div>
+        <div class="t-info">
+          <div class="pname">Winter Clash 2025</div>
+          <div class="ptag">Онлайн · 8 команд</div>
+        </div>
+        <div class="badge bl">1 место</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- НОВОСТИ -->
+  <main class="main hidden" id="page-news">
+    <div class="page-title">Новости</div>
+    <div class="panel news-card">
+      <div class="news-date">05.06.2025</div>
+      <div class="news-title">Новый сезон — новые правила ротации</div>
+      <div class="news-body">С этой недели вводим обновлённую систему ротации. Каждый участник обязан сыграть минимум 2 сессии в неделю. Лидер назначает роли в понедельник до 18:00.</div>
+    </div>
+    <div class="panel news-card">
+      <div class="news-date">01.06.2025</div>
+      <div class="news-title">MARLY занял 2 место на Spring Cup!</div>
+      <div class="news-body">Поздравляем весь состав с отличным результатом на Spring Reforger Cup. Особая благодарность ShadowKing и NightX за командную игру в финале.</div>
+    </div>
+    <div class="panel news-card">
+      <div class="news-date">20.05.2025</div>
+      <div class="news-title">Набор новых участников открыт</div>
+      <div class="news-body">Клан MARLY открывает набор. Требования: минимум 200 часов в Reforger, K/D от 1.0, активность минимум 3 раза в неделю. Заявки в Discord.</div>
+    </div>
   </main>
 
   <footer class="footer">
@@ -170,11 +176,11 @@
       <div class="footer-links">
         <div class="footer-col">
           <div class="footer-col-title">Навигация</div>
-          <a href="#">Главная</a>
-          <a href="#">Участники</a>
-          <a href="#">Ротация</a>
-          <a href="#">Турниры</a>
-          <a href="#">Новости</a>
+          <a href="#" onclick="showPage('home', document.querySelectorAll('.nav-link')[0])">Главная</a>
+          <a href="#" onclick="showPage('members', document.querySelectorAll('.nav-link')[1])">Участники</a>
+          <a href="#" onclick="showPage('rotation', document.querySelectorAll('.nav-link')[2])">Ротация</a>
+          <a href="#" onclick="showPage('tournaments', document.querySelectorAll('.nav-link')[3])">Турниры</a>
+          <a href="#" onclick="showPage('news', document.querySelectorAll('.nav-link')[4])">Новости</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Клан</div>
