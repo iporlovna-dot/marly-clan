@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARLY — Ротация</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="nav-logo">☠</div><span>MARLY</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Главная</a>
+      <a href="members.html" class="nav-link">Участники</a>
+      <a href="rotation.html" class="nav-link active">Ротация</a>
+      <a href="tournaments.html" class="nav-link">Турниры</a>
+      <a href="news.html" class="nav-link">Новости</a>
+    </div>
+    <button class="nav-login">Войти</button>
+  </nav>
+  <main class="main">
+    <div class="page-title">Ротация</div>
+    <div class="panel">
+      <div class="rot-header">
+        <div class="sec-title">Текущая неделя</div>
+        <button class="add-btn" id="edit-btn" onclick="toggleEdit()">Редактировать</button>
+      </div>
+      <div class="rot-grid" id="rot-grid"></div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

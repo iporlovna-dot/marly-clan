@@ -348,3 +348,13 @@ body {
 .news-date { font-size: 12px; color: #888780; }
 .news-title { font-size: 16px; font-weight: bold; color: #C0DD97; }
 .news-body { font-size: 13px; color: #888780; line-height: 1.6; }
+
+.page-title { font-size: 22px; font-weight: bold; color: #C0DD97; margin-bottom: 4px; }
+.tournament-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
+.tournament-row:last-child { border-bottom: none; }
+.t-date { font-size: 12px; color: #888780; white-space: nowrap; min-width: 80px; }
+.t-info { flex: 1; }
+.news-card { display: flex; flex-direction: column; gap: 8px; }
+.news-date { font-size: 12px; color: #888780; }
+.news-title { font-size: 16px; font-weight: bold; color: #C0DD97; }
+.news-body { font-size: 13px; color: #888780; line-height: 1.6; }
