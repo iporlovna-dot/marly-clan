@@ -574,3 +574,60 @@ body {
 }
 .gold-medal   { background: #2a1f00; color: #EF9F27; border: 1px solid #EF9F27; }
 .silver-medal { background: #1f1f1f; color: #B4B2A9; border: 1px solid #B4B2A9; }
+
+/* ПРАВИЛА */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.rule-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+.rule-card:hover { border-color: #3B6D11; }
+.rule-num {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3B6D11;
+  flex-shrink: 0;
+  line-height: 1;
+  min-width: 36px;
+}
+.rule-content { flex: 1; }
+.rule-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #C0DD97;
+  margin-bottom: 6px;
+}
+.rule-text {
+  font-size: 13px;
+  color: #888780;
+  line-height: 1.7;
+}
+.rules-conclusion {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.rules-conclusion-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2a1010;
+  border: 1px solid #E24B4A;
+  color: #E24B4A;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
