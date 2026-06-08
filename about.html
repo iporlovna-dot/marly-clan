@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MARLY — О клане</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-v2.css">
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-brand"><div class="nav-logo">☠</div><span>MARLY</span></div>
+    <div class="nav-brand">
+      <div class="nav-logo"><img src="0000999.jpg" alt="MARLY"></div>
+      <span>MARLY</span>
+    </div>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Главная</a>
       <a href="members.html" class="nav-link">Участники</a>
@@ -20,16 +26,22 @@
   </nav>
 
   <div class="hero-wrap">
-    <div class="hero">
-      <div class="hero-tag">Основан в 2024 · Arma Reforger</div>
-      <div class="hero-title">О КЛАНЕ<br><span class="hero-accent">MARLY</span></div>
-      <div class="hero-sub">Дисциплина. Тактика. Победа.</div>
+    <div class="hero hero-simple">
+      <div class="hero-noise"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Основан в 2024 · Arma Reforger
+        </div>
+        <div class="hero-title">О КЛАНЕ<br><span class="hero-accent">MARLY</span></div>
+        <div class="hero-sub">Дисциплина. Тактика. Победа.</div>
+      </div>
     </div>
   </div>
 
   <main class="main">
 
-    <!-- ЦИФРЫ -->
     <div class="about-stats">
       <div class="about-stat-card">
         <div class="about-stat-value">2024</div>
@@ -49,31 +61,29 @@
       </div>
     </div>
 
-    <!-- ИСТОРИЯ + ФИЛОСОФИЯ рядом -->
     <div class="two-col">
       <div class="panel">
         <div class="about-section-tag">— История</div>
-        <div class="sec-title">Путь отряда MARLY</div>
+        <div class="sec-title" style="margin-bottom:14px">Путь отряда MARLY</div>
         <div class="about-text">
           История отряда Marly началась в 24-м году, группой единомышленников, объединённых любовью к тактическому геймплею. В суровых реалиях Project Reality на движке BF2. Там, среди пыли и жёсткого тактического взаимодействия, ковался наш первый костяк.<br><br>
           Постепенно расширяя горизонты, мы перешли в Arma 3, осваивая искусство PvE-TvT операций, а затем нашли своё место в Squad, проходя через локальные миссии и масштабные сражения на серверах.<br><br>
           Но эволюция не стояла на месте: Arma Reforger открыла перед нами новые рубежи, подарив такие проекты, как Podval и Echo. Сегодня наш дом — сервер Echo, где мы продолжаем писать свою историю.<br><br>
-          Marly — это не просто цифра левых людей, это 30 уникальных судеб. В нашем строю каждый — от рядового пехотинца до опытного пилота — знает свою роль и не подведёт в бою. Мы открыты для новых бойцов. Нам не важен их прошлый багаж, ведь мы верим: каждый заслуживает шанса, и мы готовы обучить каждого с нуля.
+          Marly — это не просто цифра левых людей, это 30 уникальных судеб. Мы открыты для новых бойцов. Нам не важен их прошлый багаж, ведь мы верим: каждый заслуживает шанса, и мы готовы обучить каждого с нуля.
         </div>
       </div>
       <div class="panel">
         <div class="about-section-tag">— Философия</div>
-        <div class="sec-title">Во что мы верим</div>
+        <div class="sec-title" style="margin-bottom:14px">Во что мы верим</div>
         <div class="about-text">
           Победа рождается из дисциплины и командной работы. Каждый боец MARLY знает свою роль и выполняет её безупречно. Мы не просто играем — мы строим команду, которая побеждает системно. Уважение, тактика и результат — три кита клана.
         </div>
       </div>
     </div>
 
-    <!-- ДОСТИЖЕНИЯ -->
     <div class="panel">
       <div class="about-section-tag">— Результаты</div>
-      <div class="sec-title">Достижения</div>
+      <div class="sec-title" style="margin-bottom:14px">Достижения</div>
       <div class="achievement-row">
         <div class="achievement-medal gold-medal">1</div>
         <div class="achievement-info">
@@ -92,10 +102,9 @@
       </div>
     </div>
 
-    <!-- ТРЕБОВАНИЯ -->
     <div class="panel">
       <div class="about-section-tag">— Вступление</div>
-      <div class="sec-title">Требования для бойца</div>
+      <div class="sec-title" style="margin-bottom:16px">Требования для бойца</div>
       <div class="req-grid">
         <div class="req-card">
           <div class="req-val">200+</div>
@@ -119,7 +128,6 @@
       </div>
     </div>
 
-    <!-- ВСТУПИТЬ -->
     <div class="panel about-join">
       <div class="about-join-text">
         <div class="sec-title" style="margin-bottom:6px">Готов вступить?</div>
@@ -133,28 +141,41 @@
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><div class="footer-logo-box">☠</div><span class="footer-logo-name">MARLY</span></div>
+        <div class="footer-logo">
+          <div class="footer-logo-box"><img src="0000999.jpg" alt="MARLY"></div>
+          <span class="footer-logo-name">MARLY</span>
+        </div>
         <div class="footer-desc">Официальный сайт игрового клана MARLY. Arma Reforger.</div>
       </div>
       <div class="footer-links">
         <div class="footer-col">
           <div class="footer-col-title">Навигация</div>
-          <a href="index.html">Главная</a><a href="members.html">Участники</a>
-          <a href="rotation.html">Ротация</a><a href="tournaments.html">Турниры</a><a href="news.html">Новости</a>
+          <a href="index.html">Главная</a>
+          <a href="members.html">Участники</a>
+          <a href="rotation.html">Ротация</a>
+          <a href="tournaments.html">Турниры</a>
+          <a href="news.html">Новости</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Клан</div>
-          <a href="about.html">О клане</a><a href="about.html">Вступить</a><a href="rules.html">Правила</a>
+          <a href="about.html">О клане</a>
+          <a href="about.html">Вступить</a>
+          <a href="rules.html">Правила</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Соцсети</div>
-          <a href="https://discord.gg/dA8naKGEJJ" target="_blank">Discord</a><a href="https://www.youtube.com/@Marlygroup" target="_blank">YouTube</a><a href="#">Instagram</a>
+          <a href="https://discord.gg/dA8naKGEJJ" target="_blank">Discord</a>
+          <a href="https://www.youtube.com/@Marlygroup" target="_blank">YouTube</a>
+          <a href="#">Instagram</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
-      <div class="footer-rights"><a href="#">Политика конфиденциальности</a><a href="#">Правила использования</a></div>
+      <div class="footer-rights">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Правила использования</a>
+      </div>
     </div>
   </footer>
 </body>

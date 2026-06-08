@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MARLY — Участники</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-v2.css">
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-brand"><div class="nav-logo">☠</div><span>MARLY</span></div>
+    <div class="nav-brand">
+      <div class="nav-logo"><img src="0000999.jpg" alt="MARLY"></div>
+      <span>MARLY</span>
+    </div>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Главная</a>
       <a href="members.html" class="nav-link active">Участники</a>
@@ -18,14 +24,59 @@
     </div>
     <button class="nav-login">Войти</button>
   </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-tag">MARLY CLAN · Arma Reforger</div>
+        <div class="page-hero-title">Участники клана</div>
+      </div>
+    </div>
+  </div>
+
   <main class="main">
-    <div class="page-title">Участники клана</div>
     <div class="panel" id="members-list"></div>
     <button class="add-btn" onclick="openModal()">+ Добавить участника</button>
   </main>
+
   <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-box"><img src="0000999.jpg" alt="MARLY"></div>
+          <span class="footer-logo-name">MARLY</span>
+        </div>
+        <div class="footer-desc">Официальный сайт игрового клана MARLY. Arma Reforger.</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Навигация</div>
+          <a href="index.html">Главная</a>
+          <a href="members.html">Участники</a>
+          <a href="rotation.html">Ротация</a>
+          <a href="tournaments.html">Турниры</a>
+          <a href="news.html">Новости</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Клан</div>
+          <a href="about.html">О клане</a>
+          <a href="about.html">Вступить</a>
+          <a href="rules.html">Правила</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Соцсети</div>
+          <a href="https://discord.gg/dA8naKGEJJ" target="_blank">Discord</a>
+          <a href="https://www.youtube.com/@Marlygroup" target="_blank">YouTube</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+    </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
+      <div class="footer-rights">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Правила использования</a>
+      </div>
     </div>
   </footer>
 
@@ -67,7 +118,7 @@
     function render() {
       const members = getData('members');
       const list = document.getElementById('members-list');
-      list.innerHTML = `<div class="sec-title">Состав — ${members.length} игроков</div>`;
+      list.innerHTML = `<div class="panel-header"><div class="sec-title">Состав клана</div><div class="sec-badge">${members.length} игроков</div></div>`;
       members.forEach(m => {
         const c = ROLE_COLORS[m.role] || ROLE_COLORS['Участник'];
         const row = document.createElement('div');
@@ -130,21 +181,15 @@
       const online = document.getElementById('f-online').checked;
       if (!name) return alert('Введи никнейм');
       const c = ROLE_COLORS[role];
-
       if (editId) {
         const idx = members.findIndex(x => x.id === editId);
         members[idx] = { ...members[idx], name, av: av || name.slice(0,2).toUpperCase(), role, hours, kd, pts, online, bg: c.bg, fg: c.fg };
       } else {
         members.push({ id: Date.now(), av: av || name.slice(0,2).toUpperCase(), name, role, game:'Reforger', hours, kd, pts, online, bg: c.bg, fg: c.fg });
       }
-
       saveData('members', members);
-
-      // Обновляем лидерборд автоматически из участников
-      const lb = members.map(m => ({ id: m.id, name: m.name, pts: m.pts || 0 }))
-        .sort((a,b) => b.pts - a.pts);
+      const lb = members.map(m => ({ id: m.id, name: m.name, pts: m.pts || 0 })).sort((a,b) => b.pts - a.pts);
       saveData('leaderboard', lb);
-
       closeModal();
       render();
     }

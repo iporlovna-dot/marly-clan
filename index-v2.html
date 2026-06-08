@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MARLY — Главная</title>
+  <title>MARLY — Главная v2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
@@ -217,6 +217,7 @@
       document.getElementById('hb-wr').textContent      = stats.winrate;
       document.getElementById('online-count').textContent = onlineCount + ' онлайн';
 
+      // Leaderboard
       const lbEl = document.getElementById('lb-home');
       lbEl.innerHTML = '';
       const maxPts = lb[0]?.pts || 1;
@@ -233,6 +234,7 @@
         </div>`;
       });
 
+      // Members
       const memEl = document.getElementById('mem-home');
       memEl.innerHTML = '';
       members.slice(0,5).forEach(m => {
@@ -245,6 +247,7 @@
         </div>`;
       });
 
+      // Rotation
       const rotEl = document.getElementById('rot-grid-home');
       rotEl.innerHTML = '';
       rotation.forEach(day => {

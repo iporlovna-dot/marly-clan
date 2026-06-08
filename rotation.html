@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MARLY — Ротация</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-v2.css">
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-brand"><div class="nav-logo">☠</div><span>MARLY</span></div>
+    <div class="nav-brand">
+      <div class="nav-logo"><img src="0000999.jpg" alt="MARLY"></div>
+      <span>MARLY</span>
+    </div>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Главная</a>
       <a href="members.html" class="nav-link">Участники</a>
@@ -18,15 +24,61 @@
     </div>
     <button class="nav-login">Войти</button>
   </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-tag">MARLY CLAN · Расписание</div>
+        <div class="page-hero-title">Ротация бойцов</div>
+      </div>
+    </div>
+  </div>
+
   <main class="main">
-    <div class="page-title">Ротация</div>
     <div class="panel" id="rot-panel"></div>
   </main>
+
   <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-box"><img src="0000999.jpg" alt="MARLY"></div>
+          <span class="footer-logo-name">MARLY</span>
+        </div>
+        <div class="footer-desc">Официальный сайт игрового клана MARLY. Arma Reforger.</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Навигация</div>
+          <a href="index.html">Главная</a>
+          <a href="members.html">Участники</a>
+          <a href="rotation.html">Ротация</a>
+          <a href="tournaments.html">Турниры</a>
+          <a href="news.html">Новости</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Клан</div>
+          <a href="about.html">О клане</a>
+          <a href="about.html">Вступить</a>
+          <a href="rules.html">Правила</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Соцсети</div>
+          <a href="https://discord.gg/dA8naKGEJJ" target="_blank">Discord</a>
+          <a href="https://www.youtube.com/@Marlygroup" target="_blank">YouTube</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+    </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
+      <div class="footer-rights">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Правила использования</a>
+      </div>
     </div>
   </footer>
+
   <script src="data.js"></script>
   <script>
     const ROLES = [
@@ -43,13 +95,14 @@
       const panel = document.getElementById('rot-panel');
       panel.innerHTML = `<div class="rot-header">
         <div class="sec-title">Текущая неделя</div>
-        <button class="add-btn" onclick="toggleEdit()">${editMode ? '✓ Сохранить' : '✏ Редактировать'}</button>
+        <button class="add-btn" onclick="toggleEdit()" style="margin-top:0">${editMode ? '✓ Сохранить' : '✏ Редактировать'}</button>
       </div>
       <div class="rot-grid" id="rot-grid"></div>`;
 
       const grid = document.getElementById('rot-grid');
       rotation.forEach((day, di) => {
         const col = document.createElement('div');
+        col.className = 'rot-day';
         col.innerHTML = `<div class="rot-day-label">${day.label} <span>${day.date}</span></div>`;
         const slots = document.createElement('div');
         slots.className = 'rot-slots';

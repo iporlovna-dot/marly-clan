@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MARLY — Правила</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-v2.css">
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-brand"><div class="nav-logo">☠</div><span>MARLY</span></div>
+    <div class="nav-brand">
+      <div class="nav-logo"><img src="0000999.jpg" alt="MARLY"></div>
+      <span>MARLY</span>
+    </div>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Главная</a>
       <a href="members.html" class="nav-link">Участники</a>
@@ -20,17 +26,23 @@
   </nav>
 
   <div class="hero-wrap">
-    <div class="hero">
-      <div class="hero-tag">Клан MARLY · Кодекс бойца</div>
-      <div class="hero-title">ПРАВИЛА<br><span class="hero-accent">КЛАНА</span></div>
-      <div class="hero-sub">Соблюдение правил — основа команды.</div>
+    <div class="hero hero-simple">
+      <div class="hero-noise"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Клан MARLY · Кодекс бойца
+        </div>
+        <div class="hero-title">ПРАВИЛА<br><span class="hero-accent">КЛАНА</span></div>
+        <div class="hero-sub">Соблюдение правил — основа команды.</div>
+      </div>
     </div>
   </div>
 
   <main class="main">
 
     <div class="rules-grid">
-
       <div class="rule-card">
         <div class="rule-num">01</div>
         <div class="rule-content">
@@ -38,7 +50,6 @@
           <div class="rule-text">Взаимное уважение — основа нашего клана. Обращайтесь к другим так, как хотели бы, чтобы обращались к вам.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">02</div>
         <div class="rule-content">
@@ -46,7 +57,6 @@
           <div class="rule-text">Участвуйте в мероприятиях и обсуждениях. Будьте активным членом клана — это поддерживает интерес и вовлечённость всей команды.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">03</div>
         <div class="rule-content">
@@ -54,7 +64,6 @@
           <div class="rule-text">Помогайте товарищам. Если кто-то нуждается в помощи или совете — будьте готовы поддержать. Мы одна команда.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">04</div>
         <div class="rule-content">
@@ -62,7 +71,6 @@
           <div class="rule-text">Избегайте агрессии. Если возникла проблема — решайте её конструктивно или обращайтесь к лидерам клана.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">05</div>
         <div class="rule-content">
@@ -70,7 +78,6 @@
           <div class="rule-text">Следите за языком и тоном. Оскорбления и нецензурная лексика в адрес участников — недопустимы.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">06</div>
         <div class="rule-content">
@@ -78,7 +85,6 @@
           <div class="rule-text">Присутствуйте на турнирах и встречах клана. О своей недоступности предупреждайте заранее.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">07</div>
         <div class="rule-content">
@@ -86,7 +92,6 @@
           <div class="rule-text">Не раскрывайте внутренние дела и тактику клана посторонним. Стратегия — только внутри команды.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">08</div>
         <div class="rule-content">
@@ -94,7 +99,6 @@
           <div class="rule-text">Поддерживайте позитивную атмосферу. Стремитесь к совместному росту и развитию каждого участника.</div>
         </div>
       </div>
-
       <div class="rule-card">
         <div class="rule-num">09</div>
         <div class="rule-content">
@@ -102,10 +106,8 @@
           <div class="rule-text">Соблюдайте правила серверов. Читерство, эксплойты и обман — строго запрещены и ведут к исключению.</div>
         </div>
       </div>
-
     </div>
 
-    <!-- ЗАКЛЮЧЕНИЕ -->
     <div class="panel rules-conclusion">
       <div class="rules-conclusion-icon">!</div>
       <div>
@@ -113,7 +115,7 @@
         <div class="about-text">
           Следование этим правилам позволит нам создать дружелюбную и продуктивную атмосферу в клане MARLY. Все предложения по улучшению правил приветствуются — обращайтесь к лидерам клана в Discord.
         </div>
-        <a href="https://discord.gg/dA8naKGEJJ" target="_blank" class="btn-discord" style="display:inline-block;margin-top:14px">Связаться с лидерами</a>
+        <a href="https://discord.gg/dA8naKGEJJ" target="_blank" class="btn-discord" style="margin-top:16px">Связаться с лидерами</a>
       </div>
     </div>
 
@@ -122,28 +124,41 @@
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><div class="footer-logo-box">☠</div><span class="footer-logo-name">MARLY</span></div>
+        <div class="footer-logo">
+          <div class="footer-logo-box"><img src="0000999.jpg" alt="MARLY"></div>
+          <span class="footer-logo-name">MARLY</span>
+        </div>
         <div class="footer-desc">Официальный сайт игрового клана MARLY. Arma Reforger.</div>
       </div>
       <div class="footer-links">
         <div class="footer-col">
           <div class="footer-col-title">Навигация</div>
-          <a href="index.html">Главная</a><a href="members.html">Участники</a>
-          <a href="rotation.html">Ротация</a><a href="tournaments.html">Турниры</a><a href="news.html">Новости</a>
+          <a href="index.html">Главная</a>
+          <a href="members.html">Участники</a>
+          <a href="rotation.html">Ротация</a>
+          <a href="tournaments.html">Турниры</a>
+          <a href="news.html">Новости</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Клан</div>
-          <a href="about.html">О клане</a><a href="about.html">Вступить</a><a href="rules.html">Правила</a>
+          <a href="about.html">О клане</a>
+          <a href="about.html">Вступить</a>
+          <a href="rules.html">Правила</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Соцсети</div>
-          <a href="https://discord.gg/dA8naKGEJJ" target="_blank">Discord</a><a href="https://www.youtube.com/@Marlygroup" target="_blank">YouTube</a><a href="#">Instagram</a>
+          <a href="https://discord.gg/dA8naKGEJJ" target="_blank">Discord</a>
+          <a href="https://www.youtube.com/@Marlygroup" target="_blank">YouTube</a>
+          <a href="#">Instagram</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены.</div>
-      <div class="footer-rights"><a href="#">Политика конфиденциальности</a><a href="#">Правила использования</a></div>
+      <div class="footer-rights">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Правила использования</a>
+      </div>
     </div>
   </footer>
 </body>
