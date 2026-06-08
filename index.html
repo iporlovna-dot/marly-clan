@@ -3,279 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MARLY Clan — Arma Reforger</title>
+  <title>MARLY Clan</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 </head>
 <body>
 
   <nav class="nav">
     <div class="nav-brand">
-      <div class="nav-logo">☠</div>
-      <span class="nav-name">MARLY</span>
+      <div class="nav-logo"><i class="ti ti-skull"></i></div>
+      <span>MARLY</span>
     </div>
     <div class="nav-links">
-      <a href="#home" class="nav-link active">Главная</a>
-      <a href="#members" class="nav-link">Участники</a>
-      <a href="#rotation" class="nav-link">Ротация</a>
-      <a href="#tournaments" class="nav-link">Турниры</a>
-      <a href="#news" class="nav-link">Новости</a>
+      <a href="#" class="nav-link active">Главная</a>
+      <a href="#" class="nav-link">Участники</a>
+      <a href="#" class="nav-link">Ротация</a>
+      <a href="#" class="nav-link">Турниры</a>
+      <a href="#" class="nav-link">Новости</a>
     </div>
-    <button class="nav-login">Войти</button>
+    <button class="nav-login"><i class="ti ti-login"></i> Войти</button>
   </nav>
 
-  <main class="main" id="home">
+  <main class="main">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-tag">Arma Reforger · Тактический клан</div>
-      <h1 class="hero-title">MARLY <span>CLAN</span></h1>
-      <p class="hero-sub">Дисциплина. Тактика. Победа.</p>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
+    <div class="stats-row">
       <div class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-value">24</div>
-        <div class="stat-label">Участников</div>
+        <div class="stat-label"><i class="ti ti-users"></i> Участников</div>
+        <div class="stat-value white">24</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-value">138</div>
-        <div class="stat-label">Побед</div>
+        <div class="stat-label"><i class="ti ti-trophy"></i> Побед</div>
+        <div class="stat-value green">138</div>
       </div>
-      <div class="stat-card accent-red">
-        <div class="stat-icon">📊</div>
-        <div class="stat-value">67%</div>
-        <div class="stat-label">Винрейт</div>
+      <div class="stat-card">
+        <div class="stat-label"><i class="ti ti-chart-bar"></i> Винрейт</div>
+        <div class="stat-value white">67%</div>
       </div>
-      <div class="stat-card accent-green">
-        <div class="stat-icon">🟢</div>
-        <div class="stat-value">8</div>
-        <div class="stat-label">Онлайн</div>
+      <div class="stat-card">
+        <div class="stat-label"><i class="ti ti-flame"></i> Онлайн</div>
+        <div class="stat-value red">8</div>
       </div>
-    </section>
+    </div>
 
-    <!-- Leaderboard + Members -->
-    <section class="two-col" id="members">
+    <div class="two-col">
 
       <div class="panel">
-        <div class="panel-header">
-          <h2 class="panel-title">Лидерборд</h2>
-          <span class="panel-badge">Топ игроков</span>
+        <div class="sec-title"><i class="ti ti-medal"></i> Лидерборд</div>
+        <div class="lb-row">
+          <div class="rank gold">1</div>
+          <div class="av" style="background:#1f2e12;color:#C0DD97">SK</div>
+          <div class="lb-info">
+            <div class="pname">ShadowKing</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#639922"></div></div>
+          </div>
+          <div class="pts green">4210 pts</div>
         </div>
-        <div class="leaderboard">
-          <div class="lb-item">
-            <span class="lb-rank gold">1</span>
-            <div class="lb-info">
-              <span class="lb-name">Ghost_Alpha</span>
-              <div class="lb-bar-wrap"><div class="lb-bar" style="--w:95%"></div></div>
-            </div>
-            <span class="lb-score">2847</span>
+        <div class="lb-row">
+          <div class="rank silver">2</div>
+          <div class="av" style="background:#2a1010;color:#F09595">NX</div>
+          <div class="lb-info">
+            <div class="pname">NightX</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:80%;background:#E24B4A"></div></div>
           </div>
-          <div class="lb-item">
-            <span class="lb-rank silver">2</span>
-            <div class="lb-info">
-              <span class="lb-name">SilentStrike</span>
-              <div class="lb-bar-wrap"><div class="lb-bar" style="--w:81%"></div></div>
-            </div>
-            <span class="lb-score">2301</span>
-          </div>
-          <div class="lb-item">
-            <span class="lb-rank bronze">3</span>
-            <div class="lb-info">
-              <span class="lb-name">IronVeil</span>
-              <div class="lb-bar-wrap"><div class="lb-bar" style="--w:73%"></div></div>
-            </div>
-            <span class="lb-score">2074</span>
-          </div>
-          <div class="lb-item">
-            <span class="lb-rank">4</span>
-            <div class="lb-info">
-              <span class="lb-name">RedFox_77</span>
-              <div class="lb-bar-wrap"><div class="lb-bar" style="--w:60%"></div></div>
-            </div>
-            <span class="lb-score">1702</span>
-          </div>
-          <div class="lb-item">
-            <span class="lb-rank">5</span>
-            <div class="lb-info">
-              <span class="lb-name">NightOwl</span>
-              <div class="lb-bar-wrap"><div class="lb-bar" style="--w:48%"></div></div>
-            </div>
-            <span class="lb-score">1364</span>
-          </div>
+          <div class="pts red">3380 pts</div>
         </div>
+        <div class="lb-row">
+          <div class="rank bronze">3</div>
+          <div class="av" style="background:#1f2e12;color:#97C459">VR</div>
+          <div class="lb-info">
+            <div class="pname">VoidRay</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:65%;background:#3B6D11"></div></div>
+          </div>
+          <div class="pts" style="color:#97C459">2740 pts</div>
+        </div>
+        <div class="lb-row">
+          <div class="rank">4</div>
+          <div class="av" style="background:#1a1a1a;color:#888780">CR</div>
+          <div class="lb-info">
+            <div class="pname">CryptoRage</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:50%;background:#639922"></div></div>
+          </div>
+          <div class="pts green">2100 pts</div>
+        </div>
+        <div class="lb-row">
+          <div class="rank">5</div>
+          <div class="av" style="background:#1a1a1a;color:#888780">PX</div>
+          <div class="lb-info">
+            <div class="pname">PhantomX</div>
+            <div class="bar-bg"><div class="bar-fill" style="width:38%;background:#444441"></div></div>
+          </div>
+          <div class="pts" style="color:#888780">1590 pts</div>
+        </div>
+        <button class="add-btn">Показать всех</button>
       </div>
 
       <div class="panel">
-        <div class="panel-header">
-          <h2 class="panel-title">Участники клана</h2>
-          <span class="panel-badge">24 бойца</span>
+        <div class="sec-title"><i class="ti ti-users-group"></i> Участники клана</div>
+        <div class="mem-row">
+          <div class="dot-on"></div>
+          <div class="av" style="background:#1f2e12;color:#C0DD97">SK</div>
+          <div class="mem-info">
+            <div class="pname">ShadowKing</div>
+            <div class="ptag">Reforger · 1200ч</div>
+          </div>
+          <div class="badge bl">Лидер</div>
         </div>
-        <div class="members-list">
-          <div class="member-item">
-            <div class="member-avatar av-leader">GA</div>
-            <div class="member-info">
-              <span class="member-name">Ghost_Alpha</span>
-              <span class="member-role role-leader">Лидер</span>
-            </div>
-            <span class="member-status online" title="В игре"></span>
+        <div class="mem-row">
+          <div class="dot-on"></div>
+          <div class="av" style="background:#2a1010;color:#F09595">NX</div>
+          <div class="mem-info">
+            <div class="pname">NightX</div>
+            <div class="ptag">Reforger · 980ч</div>
           </div>
-          <div class="member-item">
-            <div class="member-avatar av-officer">SS</div>
-            <div class="member-info">
-              <span class="member-name">SilentStrike</span>
-              <span class="member-role role-officer">Офицер</span>
-            </div>
-            <span class="member-status online" title="Онлайн"></span>
-          </div>
-          <div class="member-item">
-            <div class="member-avatar av-officer">IV</div>
-            <div class="member-info">
-              <span class="member-name">IronVeil</span>
-              <span class="member-role role-officer">Офицер</span>
-            </div>
-            <span class="member-status online" title="Онлайн"></span>
-          </div>
-          <div class="member-item">
-            <div class="member-avatar av-member">RF</div>
-            <div class="member-info">
-              <span class="member-name">RedFox_77</span>
-              <span class="member-role role-member">Участник</span>
-            </div>
-            <span class="member-status online" title="Онлайн"></span>
-          </div>
-          <div class="member-item">
-            <div class="member-avatar av-member">NO</div>
-            <div class="member-info">
-              <span class="member-name">NightOwl</span>
-              <span class="member-role role-member">Участник</span>
-            </div>
-            <span class="member-status offline" title="Не в сети"></span>
-          </div>
-          <div class="member-item">
-            <div class="member-avatar av-member">DK</div>
-            <div class="member-info">
-              <span class="member-name">DarkKnight</span>
-              <span class="member-role role-member">Участник</span>
-            </div>
-            <span class="member-status offline" title="Не в сети"></span>
-          </div>
+          <div class="badge bo">Офицер</div>
         </div>
+        <div class="mem-row">
+          <div class="dot-off"></div>
+          <div class="av" style="background:#1f2e12;color:#97C459">VR</div>
+          <div class="mem-info">
+            <div class="pname">VoidRay</div>
+            <div class="ptag">Reforger · 740ч</div>
+          </div>
+          <div class="badge bo">Офицер</div>
+        </div>
+        <div class="mem-row">
+          <div class="dot-on"></div>
+          <div class="av" style="background:#1a1a1a;color:#888780">CR</div>
+          <div class="mem-info">
+            <div class="pname">CryptoRage</div>
+            <div class="ptag">Reforger · 520ч</div>
+          </div>
+          <div class="badge bm">Участник</div>
+        </div>
+        <div class="mem-row">
+          <div class="dot-off"></div>
+          <div class="av" style="background:#1a1a1a;color:#888780">PX</div>
+          <div class="mem-info">
+            <div class="pname">PhantomX</div>
+            <div class="ptag">Reforger · 310ч</div>
+          </div>
+          <div class="badge bm">Участник</div>
+        </div>
+        <button class="add-btn"><i class="ti ti-user-plus"></i> Пригласить</button>
       </div>
 
-    </section>
+    </div>
 
-    <!-- Rotation -->
-    <section class="panel" id="rotation">
-      <div class="panel-header">
-        <h2 class="panel-title">Ротация на неделю</h2>
-        <span class="panel-badge">Drag &amp; Drop</span>
+    <div class="panel">
+      <div class="rot-header">
+        <div class="sec-title"><i class="ti ti-calendar-week"></i> Ротация — текущая неделя</div>
+        <button class="add-btn" id="edit-btn" onclick="toggleEdit()"><i class="ti ti-edit"></i> Редактировать</button>
       </div>
-      <div class="rotation-hint">Перетаскивай бойцов из пула в ячейки. Клик по занятой ячейке — вернуть бойца.</div>
-      <div class="rotation-layout">
-
-        <div class="rotation-pool">
-          <h3 class="pool-title">Доступные бойцы</h3>
-          <div class="pool-list" id="pool">
-            <div class="pool-player" draggable="true" data-name="Ghost_Alpha">Ghost_Alpha</div>
-            <div class="pool-player" draggable="true" data-name="SilentStrike">SilentStrike</div>
-            <div class="pool-player" draggable="true" data-name="IronVeil">IronVeil</div>
-            <div class="pool-player" draggable="true" data-name="RedFox_77">RedFox_77</div>
-            <div class="pool-player" draggable="true" data-name="NightOwl">NightOwl</div>
-            <div class="pool-player" draggable="true" data-name="DarkKnight">DarkKnight</div>
-            <div class="pool-player" draggable="true" data-name="Viper_X">Viper_X</div>
-            <div class="pool-player" draggable="true" data-name="StormBreaker">StormBreaker</div>
-          </div>
-        </div>
-
-        <div class="rotation-grid">
-
-          <div class="rotation-day">
-            <div class="day-header">
-              <span class="day-name">Понедельник</span>
-              <span class="day-abbr">ПН</span>
-            </div>
-            <div class="day-slots">
-              <div class="role-slot">
-                <span class="role-label">⭐ Ком. отряда</span>
-                <div class="slot-drop" data-slot="mon-cmd">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">🎯 Снайпер</span>
-                <div class="slot-drop" data-slot="mon-snp">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">➕ Медик</span>
-                <div class="slot-drop" data-slot="mon-med">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">💣 Сапёр</span>
-                <div class="slot-drop" data-slot="mon-sap">Перетащи бойца</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rotation-day">
-            <div class="day-header">
-              <span class="day-name">Среда</span>
-              <span class="day-abbr">СР</span>
-            </div>
-            <div class="day-slots">
-              <div class="role-slot">
-                <span class="role-label">⭐ Ком. отряда</span>
-                <div class="slot-drop" data-slot="wed-cmd">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">🎯 Снайпер</span>
-                <div class="slot-drop" data-slot="wed-snp">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">➕ Медик</span>
-                <div class="slot-drop" data-slot="wed-med">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">💣 Сапёр</span>
-                <div class="slot-drop" data-slot="wed-sap">Перетащи бойца</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rotation-day">
-            <div class="day-header">
-              <span class="day-name">Пятница</span>
-              <span class="day-abbr">ПТ</span>
-            </div>
-            <div class="day-slots">
-              <div class="role-slot">
-                <span class="role-label">⭐ Ком. отряда</span>
-                <div class="slot-drop" data-slot="fri-cmd">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">🎯 Снайпер</span>
-                <div class="slot-drop" data-slot="fri-snp">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">➕ Медик</span>
-                <div class="slot-drop" data-slot="fri-med">Перетащи бойца</div>
-              </div>
-              <div class="role-slot">
-                <span class="role-label">💣 Сапёр</span>
-                <div class="slot-drop" data-slot="fri-sap">Перетащи бойца</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+      <div class="rot-grid" id="rot-grid"></div>
+    </div>
 
   </main>
 
   <footer class="footer">
-    <div class="footer-logo">☠ MARLY</div>
-    <p>© 2025 MARLY Clan. Все права защищены.</p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-box"><i class="ti ti-skull"></i></div>
+          <span class="footer-logo-name">MARLY</span>
+        </div>
+        <div class="footer-desc">Официальный сайт игрового клана MARLY. Arma Reforger.</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Навигация</div>
+          <a href="#">Главная</a>
+          <a href="#">Участники</a>
+          <a href="#">Ротация</a>
+          <a href="#">Турниры</a>
+          <a href="#">Новости</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Клан</div>
+          <a href="#">О клане</a>
+          <a href="#">Вступить</a>
+          <a href="#">Правила</a>
+          <a href="#">Контакты</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Соцсети</div>
+          <a href="#"><i class="ti ti-brand-discord"></i> Discord</a>
+          <a href="#"><i class="ti ti-brand-youtube"></i> YouTube</a>
+          <a href="#"><i class="ti ti-brand-instagram"></i> Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span>MARLY Clan</span>. Все права защищены. Все материалы сайта являются собственностью клана MARLY.</div>
+      <div class="footer-rights">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Правила использования</a>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
