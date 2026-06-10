@@ -1,3 +1,12 @@
+/* ─── AUTH ────────────────────────────────────────────────── */
+body.auth-guest .admin-only { display: none !important; }
+
+.nav-logged-in {
+  background: rgba(59,109,17,.2) !important;
+  border-color: var(--c-green-mid) !important;
+  color: var(--c-green-lt) !important;
+}
+
 /* ─── RESET & BASE ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,6 +37,8 @@
 
 body {
   background: var(--c-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59,109,17,.12) 0%, transparent 60%);
   font-family: 'Inter', Arial, sans-serif;
   color: var(--c-text);
   min-height: 100vh;
@@ -132,11 +143,19 @@ a { text-decoration: none; color: inherit; }
 /* Green glow in the corner */
 .hero-glow {
   position: absolute;
-  top: -60px; left: -60px;
-  width: 360px; height: 360px;
-  background: radial-gradient(circle, rgba(59,109,17,.25) 0%, transparent 70%);
+  top: -80px; left: -80px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(59,109,17,.35) 0%, rgba(99,153,34,.08) 50%, transparent 70%);
   pointer-events: none;
   z-index: 0;
+}
+/* Second glow on the right */
+.hero-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -120px; right: -200px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(59,109,17,.12) 0%, transparent 70%);
 }
 
 .hero-content { position: relative; z-index: 1; }
@@ -258,14 +277,16 @@ a { text-decoration: none; color: inherit; }
   gap: 12px;
 }
 .stat-card {
-  background: var(--c-surface2);
+  background: linear-gradient(160deg, var(--c-surface2) 0%, #111 100%);
   border: 1px solid var(--c-border);
+  border-top-color: rgba(59,109,17,.25);
   border-radius: var(--radius-lg);
   padding: 18px 20px;
   cursor: default;
 }
 .stat-card:hover {
   border-color: rgba(59,109,17,.5);
+  border-top-color: rgba(99,153,34,.6);
   box-shadow: var(--shadow-glow);
 }
 .stat-icon { font-size: 16px; margin-bottom: 10px; }
@@ -305,12 +326,17 @@ a { text-decoration: none; color: inherit; }
   gap: 16px;
 }
 .panel {
-  background: var(--c-surface2);
+  background: linear-gradient(160deg, var(--c-surface2) 0%, #111 100%);
   border: 1px solid var(--c-border);
+  border-top: 2px solid rgba(59,109,17,.4);
   border-radius: var(--radius-lg);
   padding: 20px;
 }
-.panel:hover { border-color: rgba(59,109,17,.3); }
+.panel:hover {
+  border-color: rgba(59,109,17,.35);
+  border-top-color: rgba(99,153,34,.7);
+  box-shadow: 0 4px 24px rgba(59,109,17,.1);
+}
 
 .panel-header {
   display: flex;
@@ -323,6 +349,18 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
   color: var(--c-text);
   letter-spacing: .3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-title::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #639922, #3B6D11);
+  flex-shrink: 0;
 }
 .sec-badge {
   font-size: 10px;
@@ -507,6 +545,30 @@ a { text-decoration: none; color: inherit; }
 .slot-name  { font-size: 12px; font-weight: 500; color: var(--c-text); flex: 1; }
 .slot-empty { font-size: 12px; color: var(--c-dim); font-style: italic; flex: 1; }
 
+/* ─── FOOTER PARTNER ──────────────────────────────────────── */
+.footer-partner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: .55;
+  transition: opacity .25s, transform .25s, border-color .25s, box-shadow .25s;
+  padding: 10px 20px;
+  border: 1px solid rgba(59,109,17,.2);
+  border-radius: var(--radius-md);
+}
+.footer-partner:hover {
+  opacity: 1;
+  transform: scale(1.04);
+  border-color: rgba(99,153,34,.5);
+  box-shadow: 0 0 20px rgba(59,109,17,.12);
+}
+.footer-partner-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
 /* ─── FOOTER ──────────────────────────────────────────────── */
 .footer {
   background: #090909;
@@ -519,6 +581,7 @@ a { text-decoration: none; color: inherit; }
 .footer-top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 24px;
 }
 .footer-brand { display: flex; flex-direction: column; gap: 12px; }
